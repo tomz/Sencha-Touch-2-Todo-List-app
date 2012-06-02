@@ -1,0 +1,23 @@
+== Sencha Touch 2 Todo List built with Sencha Architect 2 & Rails  
+
+== Frontend (Sencha Touch 2)
+
+The frontend is a Sencha Touch 2 app built with Sencha Architect 2
+
+There are two implementations(take a look at the screen shots):
+  Single panel with in-place editing when double click on task item
+  Two panels with card layout, double click on task item goes to the second panel
+
+== Backend (Ruby 1.9.3 and Rails 3.2.3)
+
+The backend is a Rails application (as a REST API server only)
+
+== How to run
+
+1. make sure you have Ruby and Rails set up (using RVM is recommended)
+2. run 'bundle install'
+3. run 'rails server'
+4. open the following urls in your any WebKit browsers (Chrome, Safari, or use iOS/Android/Blackberry devices)
+   http://localhost:3000/todos_mvc   (single panel implementation)
+   http://localhost:3000/todos       (two panel implementation)
+

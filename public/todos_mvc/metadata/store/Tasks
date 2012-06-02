@@ -1,0 +1,19 @@
+{
+    "id": "ExtBox1-ext-gen79370",
+    "type": "store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "model": "Task",
+        "storeId": "Tasks",
+        "designer|userClassName": "Tasks"
+    },
+    "customConfigs": [],
+    "designerId": "0a37d4e8-96bf-4590-9928-0fe32029eabc",
+    "$viewOrder": 0,
+    "expanded": true
+}

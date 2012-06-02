@@ -1,0 +1,29 @@
+{
+    "id": "ExtBox1-ext-gen70619",
+    "type": "application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "Task"
+        ],
+        "stores": [
+            "Tasks"
+        ],
+        "views": [
+            "MainPanel"
+        ],
+        "name": "TodosApp",
+        "controllers": [
+            "MainController"
+        ]
+    },
+    "customConfigs": [],
+    "designerId": "application",
+    "$viewOrder": 0,
+    "iconCls": "icon-application",
+    "expanded": true
+}

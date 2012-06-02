@@ -1,0 +1,345 @@
+{
+    "id": "ExtBox1-ext-gen81890",
+    "type": "controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MainController"
+    },
+    "customConfigs": [],
+    "designerId": "75bcccd5-02d0-4494-87ad-386951a69f06",
+    "$viewOrder": 0,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen81895",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTaskTextFieldKeyup",
+                "implHandler": [
+                    "var ENTER_KEY_CODE = 13,",
+                    "    store, value;",
+                    "",
+                    "if (e.event.keyCode === ENTER_KEY_CODE) {",
+                    "    value = textfield.getValue();",
+                    "    if (value !== \"\") {",
+                    "        store = Ext.getStore(\"Tasks\");",
+                    "        store.add({name: value, done: false});",
+                    "        store.sync();",
+                    "        textfield.reset();",
+                    "    }",
+                    "}"
+                ],
+                "name": "keyup",
+                "designer|targetType": "Ext.field.Text",
+                "designer|controlQuery": "#taskTextField",
+                "designer|userClassName": "onTaskTextFieldKeyup"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen82455",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainPanel",
+                "selector": "#mainPanel",
+                "designer|userClassName": "mainPanel"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen82568",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "listPanel",
+                "selector": "#listPanel",
+                "designer|userClassName": "listPanel"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen82671",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "editPanel",
+                "selector": "#editPanel",
+                "designer|userClassName": "editPanel"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen87692",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTaskListItemDoubletap",
+                "implHandler": [
+                    "TodosApp.editing = true;",
+                    "target.down(\".view\").setStyle(\"display\",\"none\");",
+                    "target.down(\".edit\").setStyle(\"display\",\"block\");"
+                ],
+                "name": "itemdoubletap",
+                "designer|targetType": "Ext.dataview.List",
+                "designer|controlQuery": "#taskList",
+                "designer|userClassName": "onTaskListItemDoubletap"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen102429",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "init",
+                "implHandler": [
+                    "// setup store updaterecord and load event handler",
+                    "Ext.getStore(\"Tasks\").on({",
+                    "    scope: this,",
+                    "    updaterecord: this.updateStoreInfo,",
+                    "    load: this.updateStoreInfo",
+                    "});"
+                ],
+                "designer|userClassName": "init"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen103893",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "updateStoreInfo",
+                "implHandler": [
+                    "var count,",
+                    "    storeInfo = this.getListPanel().down(\"#storeInfo\"),",
+                    "    store = Ext.getStore(\"Tasks\");",
+                    "",
+                    "store.filter(\"done\",false);",
+                    "count = store.getCount();",
+                    "store.clearFilter();",
+                    "if (count > 0) {",
+                    "    storeInfo.setHtml(count+\" item\"+(count>1?\"s\":\"\")+\" left\");",
+                    "} else {",
+                    "    storeInfo.setHtml(\"\");",
+                    "}"
+                ],
+                "designer|userClassName": "updateStoreInfo"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen111947",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTaskListItemTap",
+                "implHandler": [
+                    "var store;",
+                    "",
+                    "TodosApp.selectedTask = record;",
+                    "if (TodosApp.selectedTarget && TodosApp.selectedTarget !== target) {",
+                    "    // reset the previous selected item",
+                    "    TodosApp.selectedTarget.down(\".destroy\").setStyle(\"display\",\"none\");",
+                    "    TodosApp.selectedTarget.down(\".edit\").setStyle(\"display\",\"none\");",
+                    "    TodosApp.selectedTarget.down(\".view\").setStyle(\"display\",\"block\"); // could be hidden by doubletap",
+                    "    TodosApp.editing = false;",
+                    "}",
+                    "",
+                    "TodosApp.selectedTarget = target;",
+                    "",
+                    "if (!TodosApp.editing) {",
+                    "    store = Ext.getStore(\"Tasks\");",
+                    "",
+                    "    // work on the current item",
+                    "    target.down(\".destroy\").setStyle(\"display\",\"block\");",
+                    "    ",
+                    "    // handle checkbox tap",
+                    "    if (TodosApp.selectedCheckbox) {",
+                    "        setTimeout(function(){",
+                    "            record.set(\"done\",TodosApp.selectedCheckbox.checked);",
+                    "            TodosApp.selectedCheckbox = undefined;",
+                    "            store.sync();",
+                    "        },500);",
+                    "    }",
+                    "    // handle destroy link tap",
+                    "    if (TodosApp.tappedDestroyLink) {",
+                    "        TodosApp.tappedDestroyLink = false;",
+                    "        store.remove(TodosApp.selectedTask);",
+                    "        store.sync();",
+                    "    }",
+                    "}"
+                ],
+                "name": "itemtap",
+                "designer|targetType": "Ext.dataview.List",
+                "designer|controlQuery": "#taskList",
+                "designer|userClassName": "onTaskListItemTap"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen115677",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTaskListInitialize",
+                "implHandler": [
+                    "// setup taskList to listen on the tap on the checkbox and record the selected checkbox ",
+                    "component.element.on({",
+                    "    tap: function(e, el) {",
+                    "        TodosApp.selectedCheckbox = el;    ",
+                    "    }, delegate: 'input[type=checkbox]'",
+                    "});",
+                    "",
+                    "// setup taskList to listen on the tap on the destroy link and set the flag (for itemtap) ",
+                    "component.element.on({",
+                    "    tap: function(e, el) {",
+                    "        TodosApp.tappedDestroyLink = true;    ",
+                    "    }, delegate: 'a'",
+                    "});",
+                    "",
+                    "// setup taskList listen on keyup for enter key, and persist the task name change",
+                    "component.element.on({",
+                    "    keyup: function(e, el) {",
+                    "        var ENTER_KEY_CODE = 13,",
+                    "            store = Ext.getStore(\"Tasks\"),",
+                    "            value = el.value;",
+                    "        ",
+                    "        if (e.event.keyCode === ENTER_KEY_CODE && value !== \"\") {",
+                    "            TodosApp.editing = false;",
+                    "            TodosApp.selectedTask.set(\"name\",value);",
+                    "            store.sync();",
+                    "            TodosApp.selectedTarget.down(\"label\").setHtml(value);",
+                    "            TodosApp.selectedTarget.down(\".edit\").setStyle(\"display\",\"none\");",
+                    "            TodosApp.selectedTarget.down(\".view\").setStyle(\"display\",\"block\");",
+                    "        }",
+                    "    }, delegate: 'input[type=text]'",
+                    "});"
+                ],
+                "name": "initialize",
+                "designer|targetType": "Ext.dataview.List",
+                "designer|controlQuery": "#taskList",
+                "designer|userClassName": "onTaskListInitialize"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen125053",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onMarkAllCheckboxCheck",
+                "implHandler": [
+                    "this.updateTaskStatus(true);"
+                ],
+                "name": "check",
+                "designer|targetType": "Ext.field.Checkbox",
+                "designer|controlQuery": "#markAllCheckbox",
+                "designer|userClassName": "onMarkAllCheckboxCheck"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen125347",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onMarkAllCheckboxUncheck",
+                "implHandler": [
+                    "this.updateTaskStatus(false);"
+                ],
+                "name": "uncheck",
+                "designer|targetType": "Ext.field.Checkbox",
+                "designer|controlQuery": "#markAllCheckbox",
+                "designer|userClassName": "onMarkAllCheckboxUncheck"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen127315",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "updateTaskStatus",
+                "designer|params": [
+                    "done"
+                ],
+                "implHandler": [
+                    "var store = Ext.getStore(\"Tasks\");",
+                    "store.each(function(record){",
+                    "    record.set(\"done\",done);",
+                    "});",
+                    "store.sync();"
+                ],
+                "designer|userClassName": "updateTaskStatus"
+            },
+            "customConfigs": [],
+            "expanded": true
+        }
+    ]
+}
