@@ -9,7 +9,7 @@
     "userConfig": {
         "designer|initialView": true,
         "id": "mainPanel",
-        "layout": "card",
+        "layout": "vbox",
         "designer|userClassName": "MainPanel"
     },
     "customConfigs": [],
@@ -18,97 +18,79 @@
     "expanded": true,
     "cn": [
         {
-            "id": "ExtBox1-ext-gen70843",
-            "type": "panel",
+            "id": "ExtBox1-ext-gen71680",
+            "type": "textfield",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "id": "listPanel",
-                "layout": "vbox",
-                "designer|userClassName": "MyPanel1"
+                "id": "taskTextField",
+                "itemId": "mytextfield",
+                "padding": "0 0 0 10",
+                "label": "",
+                "placeHolder": "What needs to be done?",
+                "designer|userClassName": "MyTextField"
             },
             "customConfigs": [],
-            "expanded": true,
-            "cn": [
-                {
-                    "id": "ExtBox1-ext-gen71680",
-                    "type": "textfield",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "id": "taskTextField",
-                        "itemId": "mytextfield",
-                        "padding": "0 0 0 10",
-                        "label": "",
-                        "placeHolder": "What needs to be done?",
-                        "designer|userClassName": "MyTextField"
-                    },
-                    "customConfigs": [],
-                    "expanded": true
-                },
-                {
-                    "id": "ExtBox1-ext-gen71850",
-                    "type": "checkboxfield",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "id": "markAllCheckbox",
-                        "itemId": "mycheckbox",
-                        "label": "Mark all tasks done",
-                        "labelAlign": "right",
-                        "labelWidth": "80%",
-                        "designer|userClassName": "MyCheckbox"
-                    },
-                    "customConfigs": [],
-                    "expanded": true
-                },
-                {
-                    "id": "ExtBox1-ext-gen72690",
-                    "type": "list",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "id": "taskList",
-                        "itemId": "mylist",
-                        "layout": "vbox",
-                        "itemTpl": "<div class=\"view\"><input type=\"checkbox\" <tpl  if=\"done\">checked</tpl> />&nbsp;<label <tpl  if=\"done\">class=\"done\"</tpl> >{name}</label><a class=\"destroy\"></a></div><input class=\"edit\" type=\"text\" value=\"{name}\">",
-                        "store": "Tasks",
-                        "designer|userClassName": "MyList",
-                        "layout|flex": 1
-                    },
-                    "customConfigs": [],
-                    "expanded": true
-                },
-                {
-                    "id": "ExtBox1-ext-gen72052",
-                    "type": "label",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "html": "<b>?</.b> items left",
-                        "id": "storeInfo",
-                        "padding": "0 0 0 15",
-                        "designer|userClassName": "MyLabel"
-                    },
-                    "customConfigs": [],
-                    "expanded": true
-                }
-            ]
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen71850",
+            "type": "checkboxfield",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "markAllCheckbox",
+                "itemId": "mycheckbox",
+                "label": "Mark all tasks done",
+                "labelAlign": "right",
+                "labelWidth": "80%",
+                "designer|userClassName": "MyCheckbox"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen72690",
+            "type": "list",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "taskList",
+                "itemId": "mylist",
+                "layout": "vbox",
+                "itemTpl": "<div class=\"view\"><input type=\"checkbox\" <tpl  if=\"done\">checked</tpl> />&nbsp;<label <tpl  if=\"done\">class=\"done\"</tpl> >{name}</label><a class=\"destroy\"></a></div><input class=\"edit\" type=\"text\" value=\"{name}\">",
+                "store": "Tasks",
+                "designer|userClassName": "MyList",
+                "layout|flex": 1
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen72052",
+            "type": "label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "html": "<b>?</.b> items left",
+                "id": "storeInfo",
+                "padding": "0 0 0 15",
+                "designer|userClassName": "MyLabel"
+            },
+            "customConfigs": [],
+            "expanded": true
         },
         {
             "id": "ExtBox1-ext-gen76799",

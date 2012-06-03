@@ -48,20 +48,16 @@ Ext.define('TodosApp.controller.MainController', {
     },
 
     onTaskTextFieldKeyup: function(textfield, e, options) {
-        var ENTER_KEY_CODE = 13,
-            store = Ext.getStore("Tasks"),
-            value = textfield.getValue();
-
-        if (e.event.keyCode === ENTER_KEY_CODE && value !== "") {
-            store.add({name: value, done: false});
-            store.sync();
+        var value = textfield.getValue();
+        // handle the enter key
+        if (e.event.keyCode === 13 && value !== "") {
+            TodosApp.store.add({name: value, done: false});
+            TodosApp.store.sync();
             textfield.reset();
         }
     },
 
     onTaskListItemDoubletap: function(dataview, index, target, record, e, options) {
-        //the following is now added to itemtap and no longer needed here
-        //TodosApp.selectedTask = record;
         var mainPanel = this.getMainPanel(),
             editPanel = this.getEditPanel();
 
@@ -77,25 +73,24 @@ Ext.define('TodosApp.controller.MainController', {
     },
 
     onDeleteButtonTap: function(button, e, options) {
-        var mainPanel = Ext.getCmp("mainPanel"),
-            store = Ext.getStore("Tasks");
+        var mainPanel = this.getMainPanel();
 
-        store.remove(TodosApp.selectedTask);
-        store.sync();
+        TodosApp.store.remove(TodosApp.selectedTask);
+        TodosApp.store.sync();
         mainPanel.down("#backButton").hide();
         mainPanel.setActiveItem(0);
     },
 
     onSaveButtonTap: function(button, e, options) {
-        var editPanel = Ext.getCmp("editPanel"),
-            mainPanel = Ext.getCmp("mainPanel");
+        var editPanel = this.getEditPanel(),
+            mainPanel = this.getMainPanel();
 
         var name = editPanel.down("#taskNameTextField").getValue(),
             done = editPanel.down("#taskDoneCheckbox").getChecked();
 
         TodosApp.selectedTask.set("name",name);
         TodosApp.selectedTask.set("done",done);
-        Ext.getStore("Tasks").sync();
+        TodosApp.store.sync();
         mainPanel.down("#backButton").hide();
         mainPanel.setActiveItem(0);
     },
@@ -106,7 +101,7 @@ Ext.define('TodosApp.controller.MainController', {
             setTimeout(function(){
                 record.set("done",TodosApp.selectedCheckbox.checked);
                 TodosApp.selectedCheckbox = undefined;
-                Ext.getStore("Tasks").sync();
+                TodosApp.store.sync();
             },500);
         }
     },
@@ -129,7 +124,9 @@ Ext.define('TodosApp.controller.MainController', {
     },
 
     init: function() {
-        Ext.getStore("Tasks").on({
+        TodosApp.store = Ext.getStore("Tasks");
+
+        TodosApp.store.on({
             scope: this,
             updaterecord: this.updateStoreInfo,
             load: this.updateStoreInfo
@@ -138,12 +135,11 @@ Ext.define('TodosApp.controller.MainController', {
 
     updateStoreInfo: function() {
         var count,
-            storeInfo = this.getListPanel().down("#storeInfo"),
-            store = Ext.getStore("Tasks");
+            storeInfo = this.getListPanel().down("#storeInfo");
 
-        store.filter("done",false);
-        count = store.getCount();
-        store.clearFilter();
+        TodosApp.store.filter("done",false);
+        count = TodosApp.store.getCount();
+        TodosApp.store.clearFilter();
         if (count > 0) {
             storeInfo.setHtml(count+" item"+(count>1?"s":"")+" left");
         } else {
@@ -152,11 +148,10 @@ Ext.define('TodosApp.controller.MainController', {
     },
 
     updateTaskStatus: function(done) {
-        var store = Ext.getStore("Tasks");
-        store.each(function(record){
+        TodosApp.store.each(function(record){
             record.set("done",done);
         });
-        store.sync();
+        TodosApp.store.sync();
     }
 
 });
