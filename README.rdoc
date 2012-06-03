@@ -24,5 +24,7 @@ The backend is a Rails application (as a REST API server only)
 == Sencha Architect 2 Projects
 
 Open the follow SA2 projects under public directory(in the Rails root directory)
+
 Single panel: public/todos_mvc/todos_mvc.xds
+
 Two Panel: public/todos/todos.xds
