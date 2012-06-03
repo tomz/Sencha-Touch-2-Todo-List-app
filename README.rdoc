@@ -18,8 +18,10 @@ The backend is a Rails application (as a REST API server only)
 2. run 'bundle install'
 3. run 'rails server'
 4. open the following urls in any WebKit browsers (Chrome, Safari, or use iOS/Android/Blackberry devices/simulators)
-   http://localhost:3000/todos_mvc   (single panel implementation)
-   http://localhost:3000/todos       (two panel implementation)
+
+   http://localhost:3000/todos_mvc/app.html   (single panel implementation)
+
+   http://localhost:3000/todos/app.html       (two panel implementation)
 
 == Sencha Architect 2 Projects
 
