@@ -14,7 +14,7 @@ The backend is a Rails application (as a REST API server only)
 
 == How to run
 
-1. make sure you have Ruby and Rails set up (using RVM is recommended)
+1. make sure you have Ruby and Rails set up (use of RVM is recommended)
 2. run 'bundle install'
 3. run 'rails server'
 4. open the following urls in any WebKit browsers (Chrome, Safari, or use iOS/Android/Blackberry devices/simulators)
