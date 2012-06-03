@@ -5,8 +5,8 @@
 The frontend is a Sencha Touch 2 app built with Sencha Architect 2
 
 There are two implementations(take a look at the screen shots):
-  Single panel with in-place editing when double click on task item
-  Two panels with card layout, double click on task item goes to the second panel
+  Single panel with in-place editing, double click on task item to edit
+  Two panels with card layout, double click on task item goes to the form panel to edit
 
 == Backend (Ruby 1.9.3 and Rails 3.2.3)
 
@@ -21,3 +21,8 @@ The backend is a Rails application (as a REST API server only)
    http://localhost:3000/todos_mvc   (single panel implementation)
    http://localhost:3000/todos       (two panel implementation)
 
+== Sencha Architect 2 Projects
+
+Open the follow SA2 projects under public directory(in the Rails root directory)
+Single panel: public/todos_mvc/todos_mvc.xds
+Two Panel: public/todos/todos.xds
