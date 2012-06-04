@@ -151,6 +151,7 @@
                             "userConfig": {
                                 "id": "taskNameTextField",
                                 "label": "Name",
+                                "name": "name",
                                 "designer|userClassName": "MyTextField1"
                             },
                             "customConfigs": [],
@@ -167,6 +168,7 @@
                             "userConfig": {
                                 "id": "taskDoneCheckbox",
                                 "label": "Done",
+                                "name": "done",
                                 "designer|userClassName": "MyCheckbox1"
                             },
                             "customConfigs": [],

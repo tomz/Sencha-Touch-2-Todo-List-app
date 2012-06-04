@@ -77,12 +77,14 @@ Ext.define('TodosApp.view.MainPanel', {
                             {
                                 xtype: 'textfield',
                                 id: 'taskNameTextField',
-                                label: 'Name'
+                                label: 'Name',
+                                name: 'name'
                             },
                             {
                                 xtype: 'checkboxfield',
                                 id: 'taskDoneCheckbox',
-                                label: 'Done'
+                                label: 'Done',
+                                name: 'done'
                             }
                         ]
                     },

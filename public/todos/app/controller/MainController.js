@@ -61,8 +61,9 @@ Ext.define('TodosApp.controller.MainController', {
         var mainPanel = this.getMainPanel(),
             editPanel = this.getEditPanel();
 
-        editPanel.down("#taskNameTextField").setValue(record.get("name"));
-        editPanel.down("#taskDoneCheckbox").setChecked(record.get("done"));
+        editPanel.setRecord(record);
+        //editPanel.down("#taskNameTextField").setValue(record.get("name"));
+        //editPanel.down("#taskDoneCheckbox").setChecked(record.get("done"));
         mainPanel.down("#backButton").show();
         mainPanel.setActiveItem(1);  // 0 is the listPanel, 1 is the editPanel
     },
