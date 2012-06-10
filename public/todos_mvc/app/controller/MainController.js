@@ -44,6 +44,7 @@ Ext.define('TodosApp.controller.MainController', {
             value = textfield.getValue();
             if (value !== "") {
                 TodosApp.store.add({name: value, done: false});
+                TodosApp.updatedTask = TodosApp.store.last();
                 TodosApp.store.sync();
                 textfield.reset();
             }
@@ -57,7 +58,6 @@ Ext.define('TodosApp.controller.MainController', {
     },
 
     onTaskListItemTap: function(dataview, index, target, record, e, options) {
-
         TodosApp.selectedTask = record;
         if (TodosApp.selectedTarget && TodosApp.selectedTarget !== target) {
             // reset the previous selected item
@@ -73,17 +73,19 @@ Ext.define('TodosApp.controller.MainController', {
             // work on the current item
             target.down(".destroy").setStyle("display","block");
 
-            // handle checkbox tap
+            // handle checkbox tap, setTimeout is needed to get the correct checkbox status
             if (TodosApp.selectedCheckbox) {
                 setTimeout(function(){
                     record.set("done",TodosApp.selectedCheckbox.checked);
                     TodosApp.selectedCheckbox = undefined;
                     TodosApp.store.sync();
                 },500);
+                TodosApp.updatedTask = TodosApp.selectedTask;
             }
             // handle destroy link tap
             if (TodosApp.tappedDestroyLink) {
                 TodosApp.tappedDestroyLink = false;
+                TodosApp.updatedTask = TodosApp.selectedTask;
                 TodosApp.store.remove(TodosApp.selectedTask);
                 TodosApp.store.sync();
             }
@@ -113,6 +115,7 @@ Ext.define('TodosApp.controller.MainController', {
                 if (e.event.keyCode === 13 && value !== "") {
                     TodosApp.editing = false;
                     TodosApp.selectedTask.set("name",value);
+                    TodosApp.updatedTask = TodosApp.selectedTask;
                     TodosApp.store.sync();
                     TodosApp.selectedTarget.down("label").setHtml(value);
                     TodosApp.selectedTarget.down(".edit").setStyle("display","none");
@@ -131,13 +134,48 @@ Ext.define('TodosApp.controller.MainController', {
     },
 
     init: function() {
+        // setup Pusher or Slanger
+        Pusher.host    = "0.0.0.0";  // for Slanger only
+        Pusher.ws_port = "8081";     // for Slanger
+        TodosApp.pusher = new Pusher('765ec374ae0a69f4ce44'); // Pusher API app key (make something up for Slanger)
+
+        TodosApp.channel = TodosApp.pusher.subscribe('todos-channel');
+
+        // debug - turn off in produciton
+        //Pusher.log = function(message) {
+        //    if (window.console && window.console.log) window.console.log(message);
+        //};
+
         TodosApp.store = Ext.getStore("Tasks");
 
         // setup store updaterecord and load event handler
         TodosApp.store.on({
             scope: this,
             updaterecord: this.updateStoreInfo,
+            addrecords: this.updateStoreInfo,
             load: this.updateStoreInfo
+        });
+
+        // Pusher/Slanger event binding
+        TodosApp.channel.bind('task-updated-event', function(data) {
+            //console.log("task-updated-event:",data.id,data.name,data.done,data.deleted);    
+            if (!TodosApp.updatedTask) {
+                var record = TodosApp.store.findRecord("id",data.id);
+                if (record) {
+                    if (!data.deleted) {
+                        record.set("name",data.name);
+                        record.set("done",data.done);
+                    } else {
+                        TodosApp.store.remove(record);
+                        TodosApp.store.removed.pop(); // avoid sync of delete triggered by server
+                    }
+                } else {
+                    if (!data.deleted) {
+                        TodosApp.store.add(data);
+                    }
+                }
+            }
+            TodosApp.updatedTask = null;
         });
     },
 
@@ -145,9 +183,10 @@ Ext.define('TodosApp.controller.MainController', {
         var count,
             storeInfo = this.getMainPanel().down("#storeInfo");
 
-        TodosApp.store.filter("done",false);
-        count = TodosApp.store.getCount();
-        TodosApp.store.clearFilter();
+        count = TodosApp.store.queryBy(function(record){
+            return record.data.done === false;
+        }).length;
+
         if (count > 0) {
             storeInfo.setHtml(count+" item"+(count>1?"s":"")+" left");
         } else {

@@ -1,0 +1,1 @@
+slanger --app_key 765ec374ae0a69f4ce44 --secret your-pusher-secret --websocket_host 0.0.0.0:8081

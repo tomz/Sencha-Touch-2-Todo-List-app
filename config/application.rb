@@ -57,3 +57,11 @@ module TodosSt2
     config.assets.version = '1.0'
   end
 end
+
+Pusher.app_id = '00000'
+#Pusher.key = '9a95d6f688101c1d0d65'
+#Pusher.secret = '4cc934f84224fdeea54c'
+Pusher.key = '765ec374ae0a69f4ce4'    # made up for Slanger
+Pusher.secret = 'your-pusher-secret'  # made up for Slanger
+Pusher.host   = '0.0.0.0'             # for Slanger
+Pusher.port   = 4567                  # for Slanger
