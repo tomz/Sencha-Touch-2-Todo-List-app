@@ -1,5 +1,7 @@
 == Sencha Touch 2 Todo List built with Sencha Architect 2 & Rails  
 
+The live apps are available here(double click on task items to edit):
+
 http://tomzeng.com:8001/todos_mvc/app (single panel with realtime updates)
 
 http://tomzeng.com:8001/todos/app     (two panels)
