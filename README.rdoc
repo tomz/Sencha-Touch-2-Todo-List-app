@@ -1,6 +1,7 @@
 == Sencha Touch 2 Todo List built with Sencha Architect 2 & Rails  
 
 http://tomzeng.com:8001/todos_mvc/app (single panel with realtime updates)
+
 http://tomzeng.com:8001/todos/app     (two panels)
 
 checkout the realtime updates with WebSocket (via Pusher/Slanger) in the pusher branch
