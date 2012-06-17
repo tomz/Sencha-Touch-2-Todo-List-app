@@ -205,6 +205,7 @@ Ext.define('TodosApp.controller.MainController', {
     i18nSetup: function(locale) {
         I18n.fallbacks = true;
         I18n.defaultLocale = "en";
+
         I18n.locale = locale || "en";
 
         Ext.getCmp("toolbar").setTitle(I18n.t("Todos"));
@@ -220,14 +221,22 @@ Ext.define('TodosApp.controller.MainController', {
         Ext.getCmp("saveButton").setText(I18n.t("Save"));
 
         Ext.getCmp("settingsFieldSet").setTitle(I18n.t("Settings"));
-        Ext.getCmp("languageSelectField").setLabel(I18n.t("Language"));
-        Ext.getCmp("languageSelectField").setOptions([
+
+        var langSel = Ext.getCmp("languageSelectField");
+        langSel.setLabel(I18n.t("Language"));
+        langSel.setOptions([
         {text: I18n.t('English'), value: 'en'},
         {text: I18n.t('Spanish'), value: 'es-ES'},
         {text: I18n.t('Chinese'), value: 'zh-CN'}
         ]);
         Ext.getCmp("settingsCancelButton").setText(I18n.t("Cancel"));
         Ext.getCmp("settingsSaveButton").setText(I18n.t("Save"));
+
+        // picker with Done and Cancel buttons(rather than overlay list) is used in phone mode
+        if (langSel.picker) {
+            langSel.picker.getDoneButton().setText(I18n.t("Done"));
+            langSel.picker.getCancelButton().setText(I18n.t("Cancel"));
+        }
 
         this.updateStoreInfo();
     }
