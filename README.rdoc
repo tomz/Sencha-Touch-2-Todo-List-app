@@ -6,7 +6,13 @@ http://tomzeng.com:8001/todos_mvc/app (single panel with realtime updates)
 
 http://tomzeng.com:8001/todos/app     (two panels)
 
-checkout the realtime updates with WebSocket (via Pusher/Slanger) in the pusher branch
+=== Realtime updates with WebSocket using Pusher/Slanger
+
+checkout the pusher branch
+
+=== Internationalization using the i18n-js Ruby gem (with en, es-ES, and zh-CN sample locales)
+
+checkout the i18n branch
 
 == Frontend (Sencha Touch 2)
 
