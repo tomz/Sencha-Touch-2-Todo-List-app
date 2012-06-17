@@ -1,0 +1,16 @@
+{
+    "id": "ExtBox1-ext-gen13428",
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "url": "http://js.pusher.com/1.11/pusher.min.js"
+    },
+    "customConfigs": [],
+    "designerId": "db7bf72f-5ac7-48b2-9ea6-ae9a95c77380",
+    "$viewOrder": 1,
+    "expanded": true
+}

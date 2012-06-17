@@ -25,5 +25,23 @@
     "designerId": "application",
     "$viewOrder": 0,
     "iconCls": "icon-application",
-    "expanded": true
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen17022",
+            "type": "loader",
+            "reference": {
+                "name": "loader",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "enabled": true,
+                "designer|userClassName": "Loader"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-loader",
+            "expanded": true
+        }
+    ]
 }

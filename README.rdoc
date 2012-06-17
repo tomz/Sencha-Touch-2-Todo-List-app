@@ -1,4 +1,10 @@
-== Sencha Touch 2 Todo List built with Sencha Architect 2 & Rails  
+== Sencha Touch 2 Todo List built with Sencha Architect 2 & Rails & Pusher/Slanger(realtime push with WebSockets) 
+
+The live apps are available here(double click on task items to edit):
+
+http://tomzeng.com:8001/todos_mvc/app (single panel with realtime updates)
+
+http://tomzeng.com:8001/todos/app     (two panels)
 
 The live apps are available here(double click on task items to edit):
 
@@ -13,17 +19,20 @@ checkout the realtime updates with WebSocket (via Pusher/Slanger) in the pusher 
 The frontend is a Sencha Touch 2 app built with Sencha Architect 2
 
 There are two implementations(take a look at the screen shots):
-  Single panel with in-place editing, double click on task item to edit
+  Single panel with in-place editing, double click on task item to edit (with WebSocket realtime)
   Two panels with card layout, double click on task item goes to the form panel to edit
 
-== Backend (Ruby 1.9.3 and Rails 3.2.3)
+== Backend (Ruby 1.9.3 and Rails 3.2.3 and Pusher/Slanger/Redis)
 
 The backend is a Rails application (as a REST API server only)
 
 == How to run
 
 1. make sure you have Ruby and Rails set up (use of RVM is recommended)
-2. run 'bundle install'
+2. run 'bundle install' in the Rails app root directory
+3. change to the slanger subdirectory and run 'bundle install' to set up Slanger dependencies
+3. run go.sh to launch slanger (make sure redis server is already started)
+4. change to the parent directory (Rails app root)
 3. run 'rails server'
 4. open the following urls in any WebKit browsers (Chrome, Safari, or use iOS/Android/Blackberry devices/simulators)
 
