@@ -1,0 +1,22 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es-ES:
+  Hello_world: "¡Hola, mundo"
+  What_needs_to_be_done: "Lo que hay que hacer?"
+  Mark_all_tasks_done: "Marque todas las tareas realizadas"
+  Back: "Retroceder"
+  Todos: "Para hacer la lista"
+  Edit_Task: "Editar tarea"
+  Name: "Nombre"
+  Done: "Hecho"
+  Delete: "Borrar"
+  Save: "Guardar"
+  items_left: "{{count}} artículos no se hace"
+  item_left: "{{count}} artículo no se hace"
+  Settings: "Configuración"
+  Language: "Idioma"
+  English: "Inglés"
+  Spanish: "Español"
+  Chinese: "Chino"
+  Cancel: "Cancelar"

@@ -1,0 +1,16 @@
+{
+    "id": "ExtBox1-ext-gen3523",
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "url": "/assets/i18n/translations.js"
+    },
+    "customConfigs": [],
+    "designerId": "4b82d673-64e7-4d63-ad3a-c766343d618e",
+    "$viewOrder": 1,
+    "expanded": true
+}

@@ -72,6 +72,7 @@ Ext.define('TodosApp.view.MainPanel', {
                 items: [
                     {
                         xtype: 'fieldset',
+                        id: 'editTaskFieldSet',
                         title: 'Edit Task',
                         items: [
                             {
@@ -118,8 +119,68 @@ Ext.define('TodosApp.view.MainPanel', {
                 ]
             },
             {
+                xtype: 'formpanel',
+                id: 'settingsPanel',
+                items: [
+                    {
+                        xtype: 'fieldset',
+                        id: 'settingsFieldSet',
+                        title: 'Settings',
+                        items: [
+                            {
+                                xtype: 'selectfield',
+                                id: 'languageSelectField',
+                                label: 'Language',
+                                labelWidth: '40%',
+                                name: 'language',
+                                options: [
+                                    {
+                                        text: 'English',
+                                        value: 'en'
+                                    },
+                                    {
+                                        text: 'Spanish',
+                                        value: 'es-ES'
+                                    },
+                                    {
+                                        text: 'Chinese',
+                                        value: 'zh-CN'
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        xtype: 'segmentedbutton',
+                        layout: {
+                            pack: 'center',
+                            type: 'hbox'
+                        },
+                        items: [
+                            {
+                                xtype: 'button',
+                                id: 'settingsCancelButton',
+                                itemId: 'mybutton4',
+                                iconMask: true,
+                                text: 'Cancel'
+                            },
+                            {
+                                xtype: 'button',
+                                id: 'settingsSaveButton',
+                                itemId: 'mybutton5',
+                                ui: 'confirm',
+                                iconCls: 'compose',
+                                iconMask: true,
+                                text: 'Save'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
                 xtype: 'toolbar',
                 docked: 'top',
+                id: 'toolbar',
                 title: 'Todos',
                 items: [
                     {
@@ -129,6 +190,17 @@ Ext.define('TodosApp.view.MainPanel', {
                         itemId: 'mybutton2',
                         ui: 'back',
                         text: 'Back'
+                    },
+                    {
+                        xtype: 'spacer'
+                    },
+                    {
+                        xtype: 'button',
+                        id: 'settingsButton',
+                        itemId: 'mybutton3',
+                        iconCls: 'settings',
+                        iconMask: true,
+                        text: ''
                     }
                 ]
             }

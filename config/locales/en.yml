@@ -2,4 +2,21 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  Hello_world: "Hello world"
+  What_needs_to_be_done: "What needs to be done?"
+  Mark_all_tasks_done: "Mark all tasks done"
+  Back: "Back"
+  Todos: "Todos"
+  Edit_Task: "Edit Task"
+  Name: "Name"
+  Done: "Done"
+  Delete: "Delete"
+  Save: "Save"
+  items_left: "{{count}} items left"
+  item_left: "{{count}} item left"
+  Settings: "Settings"
+  Language: "Language"
+  English: "English"
+  Spanish: "Spanish"
+  Chinese: "Chinese"
+  Cancel: "Cancel"

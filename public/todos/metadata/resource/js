@@ -1,0 +1,16 @@
+{
+    "id": "ExtBox1-ext-gen3827",
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "url": "/assets/i18n.js"
+    },
+    "customConfigs": [],
+    "designerId": "25c81b31-67bc-478d-ba60-4f366035368a",
+    "$viewOrder": 0,
+    "expanded": true
+}

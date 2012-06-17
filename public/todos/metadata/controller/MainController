@@ -197,6 +197,22 @@
             "expanded": true
         },
         {
+            "id": "ExtBox1-ext-gen25216",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "settingsPanel",
+                "selector": "#settingsPanel",
+                "designer|userClassName": "settingsPanel"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
             "id": "ExtBox1-ext-gen102429",
             "type": "basicfunction",
             "reference": {
@@ -213,7 +229,9 @@
                     "    scope: this,",
                     "    updaterecord: this.updateStoreInfo,",
                     "    load: this.updateStoreInfo",
-                    "});"
+                    "});",
+                    "",
+                    ""
                 ],
                 "designer|userClassName": "init"
             },
@@ -238,7 +256,7 @@
                     "count = TodosApp.store.getCount();",
                     "TodosApp.store.clearFilter();",
                     "if (count > 0) {",
-                    "    storeInfo.setHtml(count+\" item\"+(count>1?\"s\":\"\")+\" left\");",
+                    "    storeInfo.setHtml(I18n.t(count>1?\"items_left\":\"item_left\",{\"count\":count}));",
                     "} else {",
                     "    storeInfo.setHtml(\"\");",
                     "}"
@@ -364,6 +382,153 @@
                     "TodosApp.store.sync();"
                 ],
                 "designer|userClassName": "updateTaskStatus"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen10130",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onMainPanelShow",
+                "implHandler": [
+                    "this.i18nSetup();"
+                ],
+                "name": "show",
+                "designer|targetType": "Ext.Panel",
+                "designer|controlQuery": "#mainPanel",
+                "designer|userClassName": "onMainPanelShow"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen4806",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "i18nSetup",
+                "designer|params": [
+                    "locale"
+                ],
+                "implHandler": [
+                    "I18n.fallbacks = true;",
+                    "I18n.defaultLocale = \"en\";",
+                    "I18n.locale = locale || \"en\";",
+                    "",
+                    "Ext.getCmp(\"toolbar\").setTitle(I18n.t(\"Todos\"));",
+                    "Ext.getCmp(\"backButton\").setText(I18n.t(\"Back\"));",
+                    "",
+                    "Ext.getCmp(\"markAllCheckbox\").setLabel(I18n.t(\"Mark_all_tasks_done\"));",
+                    "Ext.getCmp(\"taskTextField\").setPlaceHolder(I18n.t(\"What_needs_to_be_done\"));",
+                    "",
+                    "Ext.getCmp(\"editTaskFieldSet\").setTitle(I18n.t(\"Edit_Task\"));",
+                    "Ext.getCmp(\"taskNameTextField\").setLabel(I18n.t(\"Name\"));",
+                    "Ext.getCmp(\"taskDoneCheckbox\").setLabel(I18n.t(\"Done\"));",
+                    "Ext.getCmp(\"deleteButton\").setText(I18n.t(\"Delete\"));",
+                    "Ext.getCmp(\"saveButton\").setText(I18n.t(\"Save\"));",
+                    "",
+                    "Ext.getCmp(\"settingsFieldSet\").setTitle(I18n.t(\"Settings\"));",
+                    "Ext.getCmp(\"languageSelectField\").setLabel(I18n.t(\"Language\"));",
+                    "Ext.getCmp(\"languageSelectField\").setOptions([",
+                    "            {text: I18n.t('English'), value: 'en'},",
+                    "            {text: I18n.t('Spanish'), value: 'es-ES'},",
+                    "            {text: I18n.t('Chinese'), value: 'zh-CN'}",
+                    "        ]);",
+                    "Ext.getCmp(\"settingsCancelButton\").setText(I18n.t(\"Cancel\"));",
+                    "Ext.getCmp(\"settingsSaveButton\").setText(I18n.t(\"Save\"));",
+                    "",
+                    "this.updateStoreInfo();"
+                ],
+                "designer|userClassName": "i18nSetup"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen19308",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onSettingsButtonTap",
+                "implHandler": [
+                    "var mainPanel = this.getMainPanel(),",
+                    "    settingsPanel = this.getSettingsPanel();",
+                    "",
+                    "//editPanel.setRecord(record);",
+                    "////editPanel.down(\"#taskNameTextField\").setValue(record.get(\"name\"));",
+                    "////\u001b\u001beditPanel.down(\"#taskDoneCheckbox\").setChecked(record.get(\"done\"));",
+                    "mainPanel.down(\"#backButton\").show();",
+                    "mainPanel.setActiveItem(2);  // 0 is the listPanel, 1 is the editPanel, 2 is the settingsPanel"
+                ],
+                "name": "tap",
+                "designer|targetType": "Ext.Button",
+                "designer|controlQuery": "#settingsButton",
+                "designer|userClassName": "onSettingsButtonTap"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen23468",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onSettingsCancelButtonTap",
+                "implHandler": [
+                    "var mainPanel = this.getMainPanel();",
+                    "mainPanel.down(\"#backButton\").hide();",
+                    "mainPanel.setActiveItem(0);"
+                ],
+                "name": "tap",
+                "designer|targetType": "Ext.Button",
+                "designer|controlQuery": "#settingsCancelButton",
+                "designer|userClassName": "onSettingsCancelButtonTap"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen24106",
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onSettingsSaveButtonTap",
+                "implHandler": [
+                    "var mainPanel = this.getMainPanel(),",
+                    "    settingsPanel = this.getSettingsPanel(),",
+                    "    languageSelectField = settingsPanel.down(\"#languageSelectField\"),",
+                    "    locale = languageSelectField.getValue();",
+                    "",
+                    "this.i18nSetup(locale);",
+                    "mainPanel.down(\"#backButton\").hide();",
+                    "mainPanel.setActiveItem(0);"
+                ],
+                "name": "tap",
+                "designer|targetType": "Ext.Button",
+                "designer|controlQuery": "#settingsSaveButton",
+                "designer|userClassName": "onSettingsSaveButtonTap"
             },
             "customConfigs": [],
             "expanded": true

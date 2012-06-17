@@ -31,7 +31,7 @@
                 "designer|userClassName": "MyPanel1"
             },
             "customConfigs": [],
-            "expanded": true,
+            "expanded": false,
             "cn": [
                 {
                     "id": "ExtBox1-ext-gen71680",
@@ -123,7 +123,7 @@
                 "designer|userClassName": "MyFormPanel"
             },
             "customConfigs": [],
-            "expanded": true,
+            "expanded": false,
             "cn": [
                 {
                     "id": "ExtBox1-ext-gen73971",
@@ -134,6 +134,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "id": "editTaskFieldSet",
                         "title": "Edit Task",
                         "designer|userClassName": "MyFieldSet"
                     },
@@ -236,6 +237,116 @@
             ]
         },
         {
+            "id": "ExtBox1-ext-gen19730",
+            "type": "formpanel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "settingsPanel",
+                "designer|userClassName": "MyFormPanel"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen19734",
+                    "type": "fieldset",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "settingsFieldSet",
+                        "title": "Settings",
+                        "designer|userClassName": "MyFieldSet"
+                    },
+                    "customConfigs": [],
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen19738",
+                            "type": "selectfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "languageSelectField",
+                                "label": "Language",
+                                "labelWidth": "40%",
+                                "name": "language",
+                                "options": "[\n            {text: 'English',  value: 'en'},\n            {text: 'Spanish',  value: 'es-ES'},\n            {text: 'Chinese',  value: 'zh-CN'}\n        ]",
+                                "designer|userClassName": "MySelectField"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen19750",
+                    "type": "segmentedbutton",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MySegmentedButton",
+                        "container|pack": "center"
+                    },
+                    "customConfigs": [],
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen19754",
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "settingsCancelButton",
+                                "itemId": "mybutton4",
+                                "iconCls": null,
+                                "iconMask": true,
+                                "text": "Cancel",
+                                "designer|userClassName": "MyButton"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen19759",
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "settingsSaveButton",
+                                "itemId": "mybutton5",
+                                "ui": "confirm",
+                                "iconCls": "compose",
+                                "iconMask": true,
+                                "text": "Save",
+                                "designer|userClassName": "MyButton1"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "id": "ExtBox1-ext-gen76799",
             "type": "toolbar",
             "reference": {
@@ -245,11 +356,12 @@
             "codeClass": null,
             "userConfig": {
                 "docked": "top",
+                "id": "toolbar",
                 "title": "Todos",
                 "designer|userClassName": "MyToolbar"
             },
             "customConfigs": [],
-            "expanded": true,
+            "expanded": false,
             "cn": [
                 {
                     "id": "ExtBox1-ext-gen77591",
@@ -266,6 +378,39 @@
                         "ui": "back",
                         "text": "Back",
                         "designer|userClassName": "MyButton2"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen18618",
+                    "type": "spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MySpacer"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen18187",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "settingsButton",
+                        "itemId": "mybutton3",
+                        "iconCls": "settings",
+                        "iconMask": true,
+                        "text": "",
+                        "designer|userClassName": "MyButton3"
                     },
                     "customConfigs": [],
                     "expanded": true

@@ -50,6 +50,18 @@
                 "app/controller/MainController.js"
             ],
             "className": "MainController"
+        },
+        "4b82d673-64e7-4d63-ad3a-c766343d618e": {
+            "paths": [
+                "metadata/resource/js1"
+            ],
+            "className": "js1"
+        },
+        "25c81b31-67bc-478d-ba60-4f366035368a": {
+            "paths": [
+                "metadata/resource/js"
+            ],
+            "className": "js"
         }
     },
     "expandedState": {

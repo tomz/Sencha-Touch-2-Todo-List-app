@@ -19,7 +19,8 @@ Ext.define('TodosApp.controller.MainController', {
         refs: {
             mainPanel: '#mainPanel',
             listPanel: '#listPanel',
-            editPanel: '#editPanel'
+            editPanel: '#editPanel',
+            settingsPanel: '#settingsPanel'
         },
 
         control: {
@@ -43,6 +44,18 @@ Ext.define('TodosApp.controller.MainController', {
             "#markAllCheckbox": {
                 check: 'onMarkAllCheckboxCheck',
                 uncheck: 'onMarkAllCheckboxUncheck'
+            },
+            "#mainPanel": {
+                show: 'onMainPanelShow'
+            },
+            "#settingsButton": {
+                tap: 'onSettingsButtonTap'
+            },
+            "#settingsCancelButton": {
+                tap: 'onSettingsCancelButtonTap'
+            },
+            "#settingsSaveButton": {
+                tap: 'onSettingsSaveButtonTap'
             }
         }
     },
@@ -124,6 +137,38 @@ Ext.define('TodosApp.controller.MainController', {
         this.updateTaskStatus(false);
     },
 
+    onMainPanelShow: function(component, options) {
+        this.i18nSetup();
+    },
+
+    onSettingsButtonTap: function(button, e, options) {
+        var mainPanel = this.getMainPanel(),
+            settingsPanel = this.getSettingsPanel();
+
+        //editPanel.setRecord(record);
+        ////editPanel.down("#taskNameTextField").setValue(record.get("name"));
+        ////editPanel.down("#taskDoneCheckbox").setChecked(record.get("done"));
+        mainPanel.down("#backButton").show();
+        mainPanel.setActiveItem(2);  // 0 is the listPanel, 1 is the editPanel, 2 is the settingsPanel
+    },
+
+    onSettingsCancelButtonTap: function(button, e, options) {
+        var mainPanel = this.getMainPanel();
+        mainPanel.down("#backButton").hide();
+        mainPanel.setActiveItem(0);
+    },
+
+    onSettingsSaveButtonTap: function(button, e, options) {
+        var mainPanel = this.getMainPanel(),
+            settingsPanel = this.getSettingsPanel(),
+            languageSelectField = settingsPanel.down("#languageSelectField"),
+            locale = languageSelectField.getValue();
+
+        this.i18nSetup(locale);
+        mainPanel.down("#backButton").hide();
+        mainPanel.setActiveItem(0);
+    },
+
     init: function() {
         TodosApp.store = Ext.getStore("Tasks");
 
@@ -132,6 +177,8 @@ Ext.define('TodosApp.controller.MainController', {
             updaterecord: this.updateStoreInfo,
             load: this.updateStoreInfo
         });
+
+
     },
 
     updateStoreInfo: function() {
@@ -142,7 +189,7 @@ Ext.define('TodosApp.controller.MainController', {
         count = TodosApp.store.getCount();
         TodosApp.store.clearFilter();
         if (count > 0) {
-            storeInfo.setHtml(count+" item"+(count>1?"s":"")+" left");
+            storeInfo.setHtml(I18n.t(count>1?"items_left":"item_left",{"count":count}));
         } else {
             storeInfo.setHtml("");
         }
@@ -153,6 +200,36 @@ Ext.define('TodosApp.controller.MainController', {
             record.set("done",done);
         });
         TodosApp.store.sync();
+    },
+
+    i18nSetup: function(locale) {
+        I18n.fallbacks = true;
+        I18n.defaultLocale = "en";
+        I18n.locale = locale || "en";
+
+        Ext.getCmp("toolbar").setTitle(I18n.t("Todos"));
+        Ext.getCmp("backButton").setText(I18n.t("Back"));
+
+        Ext.getCmp("markAllCheckbox").setLabel(I18n.t("Mark_all_tasks_done"));
+        Ext.getCmp("taskTextField").setPlaceHolder(I18n.t("What_needs_to_be_done"));
+
+        Ext.getCmp("editTaskFieldSet").setTitle(I18n.t("Edit_Task"));
+        Ext.getCmp("taskNameTextField").setLabel(I18n.t("Name"));
+        Ext.getCmp("taskDoneCheckbox").setLabel(I18n.t("Done"));
+        Ext.getCmp("deleteButton").setText(I18n.t("Delete"));
+        Ext.getCmp("saveButton").setText(I18n.t("Save"));
+
+        Ext.getCmp("settingsFieldSet").setTitle(I18n.t("Settings"));
+        Ext.getCmp("languageSelectField").setLabel(I18n.t("Language"));
+        Ext.getCmp("languageSelectField").setOptions([
+        {text: I18n.t('English'), value: 'en'},
+        {text: I18n.t('Spanish'), value: 'es-ES'},
+        {text: I18n.t('Chinese'), value: 'zh-CN'}
+        ]);
+        Ext.getCmp("settingsCancelButton").setText(I18n.t("Cancel"));
+        Ext.getCmp("settingsSaveButton").setText(I18n.t("Save"));
+
+        this.updateStoreInfo();
     }
 
 });
