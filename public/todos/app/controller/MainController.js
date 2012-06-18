@@ -16,6 +16,10 @@
 Ext.define('TodosApp.controller.MainController', {
     extend: 'Ext.app.Controller',
     config: {
+        routes: {
+            'lang/:locale': 'setupLocale'
+        },
+
         refs: {
             mainPanel: '#mainPanel',
             listPanel: '#listPanel',
@@ -138,16 +142,13 @@ Ext.define('TodosApp.controller.MainController', {
     },
 
     onMainPanelShow: function(component, options) {
-        this.i18nSetup();
+        this.setupLocale();
     },
 
     onSettingsButtonTap: function(button, e, options) {
         var mainPanel = this.getMainPanel(),
             settingsPanel = this.getSettingsPanel();
 
-        //editPanel.setRecord(record);
-        ////editPanel.down("#taskNameTextField").setValue(record.get("name"));
-        ////editPanel.down("#taskDoneCheckbox").setChecked(record.get("done"));
         mainPanel.down("#backButton").show();
         mainPanel.setActiveItem(2);  // 0 is the listPanel, 1 is the editPanel, 2 is the settingsPanel
     },
@@ -164,7 +165,7 @@ Ext.define('TodosApp.controller.MainController', {
             languageSelectField = settingsPanel.down("#languageSelectField"),
             locale = languageSelectField.getValue();
 
-        this.i18nSetup(locale);
+        this.setupLocale(locale);
         mainPanel.down("#backButton").hide();
         mainPanel.setActiveItem(0);
     },
@@ -202,7 +203,7 @@ Ext.define('TodosApp.controller.MainController', {
         TodosApp.store.sync();
     },
 
-    i18nSetup: function(locale) {
+    setupLocale: function(locale) {
         I18n.fallbacks = true;
         I18n.defaultLocale = "en";
 
