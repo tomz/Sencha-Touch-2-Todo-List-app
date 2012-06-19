@@ -16,8 +16,6 @@ There are two implementations(take a look at the screen shots):
   Single panel with in-place editing, double click on task item to edit
   Two panels with card layout, double click on task item goes to the form panel to edit
 
-link:https://github.com/tomz/Sencha-Touch-2-Todo-List-app/blob/i18n/Screenshot_todos_2panels-i18n.png?raw=true
-
 == Backend (Ruby 1.9.3 and Rails 3.2.3)
 
 The backend is a Rails application (as a REST API server only)
