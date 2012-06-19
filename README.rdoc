@@ -16,7 +16,7 @@ There are two implementations(take a look at the screen shots):
   Single panel with in-place editing, double click on task item to edit
   Two panels with card layout, double click on task item goes to the form panel to edit
 
-<img src=Screenshot_todos_2panels-i18n.png>
+link:Screenshot_todos_2panels-i18n.png
 
 == Backend (Ruby 1.9.3 and Rails 3.2.3)
 
